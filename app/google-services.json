@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "202905429870",
+    "firebase_url": "https://e-assignment-6dcea.firebaseio.com",
+    "project_id": "e-assignment-6dcea",
+    "storage_bucket": "e-assignment-6dcea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202905429870:android:931f12218a1c26e7",
+        "android_client_info": {
+          "package_name": "com.example.mostafa.e_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202905429870-a1d29v1da9ti4sbjmdl2olbp845abk1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mostafa.e_assignment",
+            "certificate_hash": "3698cfd0d9884c21a49aa21ffa051db866d5ba12"
+          }
+        },
+        {
+          "client_id": "202905429870-nsf27scin66q497ojtft74kpq75lev9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJgA-jJBRprcgLpQ9S_8qNhcB5g6v8JGk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202905429870-nsf27scin66q497ojtft74kpq75lev9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
