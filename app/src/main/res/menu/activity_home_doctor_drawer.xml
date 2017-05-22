@@ -16,6 +16,10 @@
             android:icon="@android:drawable/ic_menu_help"
             android:title="Upload Quiz" />
         <item
+            android:id="@+id/Students_list"
+            android:icon="@android:drawable/ic_menu_help"
+            android:title="Students List" />
+        <item
             android:id="@+id/add_student"
             android:icon="@android:drawable/checkbox_on_background"
             android:title="Add student" />
