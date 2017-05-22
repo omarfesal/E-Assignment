@@ -9,30 +9,39 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="10dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Sign Up"
-            android:textColor="#90c40909"
-            android:textSize="33dp"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp"/>
+        android:paddingRight="24dp"
+        android:weightSum="1">
+
 
         <!-- Name Label -->
+        <TextView
+            android:id="@+id/crsNameTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Course Name : "
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/quiz_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="quiz name: "
+            android:textSize="18sp" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_name"
+
+            <EditText
+                android:id="@+id/question_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Name" />
+                android:hint="Quiz Text Quistion"
+                android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Address Label -->
@@ -41,85 +50,85 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_address"
+
+            <EditText
+                android:id="@+id/answer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
-                android:hint="Address" />
+                android:hint="Chose One"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
-
-
-
-        <!--  Email Label -->
+        <!-- Address Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
+
+            <EditText
+                android:id="@+id/answer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:hint="Chose Two"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
+        <!-- Address Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-
-        <!-- mobile number -->
+            <EditText
+                android:id="@+id/answer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Chose Three"
+                android:inputType="textPostalAddress" />
+        </android.support.design.widget.TextInputLayout>
+        <!-- Address Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_mobile"
+
+            <EditText
+                android:id="@+id/answer4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="Mobile Number" />
+                android:hint="Chose Four"
+                android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
+
+        <EditText
+            android:id="@+id/correctAns_editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
+            android:ems="10"
+            android:hint="entre the number of correct answer"
+            android:inputType="textPersonName" />
 
-        <!-- Password Re-enter Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_reEnterPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Re-enter Password"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <!-- Signup Button -->
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
+            android:id="@+id/next_qs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Create Account"/>
+            android:text="Next"
+            android:textAlignment="center" />
 
-        <TextView android:id="@+id/link_login"
-            android:layout_width="fill_parent"
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submit_qs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="Already a member? Login"
-            android:gravity="center"
-            android:textSize="16dip"/>
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:text="Submit" />
+
 
     </LinearLayout>
 </ScrollView>

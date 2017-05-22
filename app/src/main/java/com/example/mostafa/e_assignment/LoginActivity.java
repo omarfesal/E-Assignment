@@ -3,43 +3,50 @@ package com.example.mostafa.e_assignment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.mostafa.e_assignment.Student.StudentHome;
+import com.example.mostafa.e_assignment.Doctor.HomeDoctor;
+import com.example.mostafa.e_assignment.Student.HomeStudent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import butterknife.BindViews;
-import butterknife.ButterKnife;
-import  butterknife.ButterKnife.*;
-import butterknife.BindView;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private String kindOfUser;
+    private final String Doctor_user_id = "fvYaFWweHGf7qGicAT89cdrd8YJ2";
 
     @BindView(R.id.input_email) EditText _emailText;
     @BindView(R.id.input_password) EditText _passwordText;
     @BindView(R.id.btn_login) Button _loginButton;
-    @BindView(R.id.link_signup) TextView _signupLink;
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         ButterKnife.bind(this);
 
         // initialize the FirebaseAuth instance and
@@ -56,9 +63,28 @@ public class LoginActivity extends AppCompatActivity {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                //
             }
         };
+
+        // Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("Doctor");
+        categories.add("Student");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
 
 
         // login to account
@@ -68,25 +94,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = _emailText.getText().toString();
                 String password = _passwordText.getText().toString();
-                login(email,password);
+                login(email, password, kindOfUser);
             }
         });
 
-        // send user to Register activity
-        _signupLink.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
-                finish();
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-            }
-        });
     }
 
-    public void login(String email , String password) {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+        kindOfUser = item;
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        kindOfUser = "Doctor";
+    }
+
+    public void login(final String email , String password , final String kind  ) {
         Log.d(TAG, "Login");
 
         if (!validate()) {
@@ -121,17 +149,19 @@ public class LoginActivity extends AppCompatActivity {
                                                Log.w(TAG, "signInWithEmail:failed", task.getException());
                                                Toast.makeText(LoginActivity.this, "login failed", Toast.LENGTH_SHORT).show();
                                            } else {
+
+
                                                // login successed and turn user to entire app
-                                               onLoginSuccess();
-                                               Toast.makeText(LoginActivity.this, "login suceed", Toast.LENGTH_SHORT).show();
+
+                                               onLoginSuccess(kind , user.getUid());
                                            }
                                        }else{
-                                           Toast.makeText(LoginActivity.this, "Email unverified .. plz verify your account", Toast.LENGTH_SHORT).show();
+                                           Toast.makeText(LoginActivity.this, "Email unverified .. plz verify your account", Toast.LENGTH_LONG).show();
                                        }
 
                                         progressDialog.dismiss();
                                     }
-                                }, 5000);
+                                }, 1);
                     }
                 });
 
@@ -151,20 +181,32 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        // Disable going back to the MainActivity
-//        moveTaskToBack(true);
-//    }
 
-    public void onLoginSuccess() {
-        Intent intent = new Intent(this , StudentHome.class);
-        startActivity(intent);
+
+    public void onLoginSuccess(String kind , String User_id) {
+        if(kind.equals("Student")&& !User_id.equals(Doctor_user_id)) {
+            // add user id to shared perefrence
+            SharedPreferences.Editor editor = getSharedPreferences("PrefFile", MODE_PRIVATE).edit();
+            editor.putString("user_id",User_id);
+            editor.commit();
+
+            Intent intent = new Intent(this, HomeStudent.class);
+            startActivity(intent);
+        }else if (kind.equals("Doctor")&&User_id.equals(Doctor_user_id)) {
+            // add user id to shared perefrence
+            SharedPreferences.Editor editor = getSharedPreferences("PrefFile", MODE_PRIVATE).edit();
+            editor.putString("user_id",User_id);
+            editor.commit();
+
+            Intent intent = new Intent(this, HomeDoctor.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(LoginActivity.this, "Uncorrect Kind of user", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
     }
 
     public boolean validate() {

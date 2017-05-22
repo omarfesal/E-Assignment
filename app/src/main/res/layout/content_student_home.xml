@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.mostafa.e_assignment.Student.StudentHome"
-    tools:showIn="@layout/activity_student_home">
+    tools:context="com.example.mostafa.e_assignment.Student.HomeStudent"
+    tools:showIn="@layout/activity_home_student">
 
 </android.support.constraint.ConstraintLayout>

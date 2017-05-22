@@ -1,7 +1,19 @@
 <resources>
     <string name="app_name">Login Please</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_student_home">StudentHome</string>
+    <string name="title_activity_home_student">Home Student</string>
+    <string name="title_activity_home_Doctor">Home Doctor</string>
+    <string name="student_info">Strudent Info</string>
+    <string name="quizzes">Quiz</string>
+    <string name="Upload_Quiz">Upload Quiz</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="List_of_quizzes">Quizzes list</string>
+    <string name="Doctor_info">Doctor info</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="assignment_detail">Assignment Details</string>
+    <string name="title_activity_quizzes_info">QuizzesInfo</string>
+    <string name="title_activity_put_assignment">PutAssignment</string>
+    <string name="title_activity_assignment_details">AssignmentDetails</string>
+    <string name="title_activity_answer_assignment">answerAssignment</string>
 </resources>

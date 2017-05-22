@@ -16,10 +16,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".Doctor.AddStudent" />
         <activity
-            android:name=".Student.StudentHome"
-            android:label="@string/title_activity_student_home"
+            android:name=".Student.HomeStudent"
+            android:label="@string/title_activity_home_student"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Doctor.HomeDoctor"
+            android:label="@string/title_activity_home_Doctor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Student.StudentInfo"
+            android:label="@string/student_info" />
+        <activity
+            android:name=".Student.QuizesActivity"
+            android:label="@string/quizzes" />
+        <activity
+            android:name=".Student.StudentQuizzesInfo"
+            android:label="@string/List_of_quizzes" />
+        <activity
+            android:name=".Doctor.UploudQuiz"
+            android:label="@string/Upload_Quiz" />
+        <activity
+            android:name=".Doctor.DoctorInfo"
+            android:label="@string/Doctor_info" />
+        <activity
+            android:name=".Doctor.PutAssignment"
+            android:label="@string/title_activity_put_assignment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Doctor.AssignmentDetails"
+            android:label="@string/title_activity_assignment_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Doctor.addCourse" />
+        <activity android:name=".Doctor.CourseDetail" />
+        <activity
+            android:name=".Student.answerAssignment"
+            android:label="@string/title_activity_answer_assignment"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
